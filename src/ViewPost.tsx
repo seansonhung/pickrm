@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { API, graphqlOperation } from 'aws-amplify'
 import { getPost } from './graphql/queries'
 import { RouteComponentProps } from '@reach/router';
+import CreateEntry from './CreateEntry';
 
 interface ViewPostProps extends RouteComponentProps {
   pid?: string;
@@ -30,6 +31,9 @@ const ViewPost : React.FC<ViewPostProps> = ({ pid }) => {
       <input
         type="text"
         placeholder={post.description}
+      />
+      <CreateEntry 
+        pid={pid}
       />
     </React.Fragment>
   )
