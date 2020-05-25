@@ -3,14 +3,17 @@ import { Router } from '@reach/router';
 import CreatePost from './CreatePost';
 import ViewPost from './ViewPost';
 import NotFoundPage from './404';
+import Layout from './layout/Layout'
 
 const App = () => {
   return (
-    <Router basepath="/app">
-      <CreatePost path="/create" />
-      <ViewPost path="/view/:pid" />
-      <NotFoundPage default />
-    </Router>
+    <Layout>
+      <Router basepath="/app">
+        <CreatePost path="/create" />
+        <ViewPost path="/view/:pid" />
+        <NotFoundPage default />
+      </Router>
+    </Layout>
   )
 }
 
