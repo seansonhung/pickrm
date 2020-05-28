@@ -16,5 +16,13 @@
 				}
 			}
 		}
+	},
+	"auth": {
+		"pickrmc89da252": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false
+		}
 	}
 }

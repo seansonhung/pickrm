@@ -10,6 +10,11 @@
             "StackName": "amplify-pickrm-dev-120905",
             "StackId": "arn:aws:cloudformation:us-east-2:075724360667:stack/amplify-pickrm-dev-120905/3b504ad0-9ab4-11ea-80e5-0608930970a0",
             "AmplifyAppId": "dtxlnz1amby7"
+        },
+        "categories": {
+            "auth": {
+                "pickrmc89da252": {}
+            }
         }
     }
 }
