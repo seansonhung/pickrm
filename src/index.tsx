@@ -6,10 +6,9 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 Amplify.configure(awsExports);
 
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <App />,
   document.getElementById('root')
 );
 
