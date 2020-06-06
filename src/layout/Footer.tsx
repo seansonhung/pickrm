@@ -10,6 +10,7 @@ const Footer: React.FC = () => {
 };
 
 const FooterWrapper = styled.footer`
+  text-align: center;
   margin-top: 50px;
 `;
 

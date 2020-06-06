@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { API, graphqlOperation } from 'aws-amplify'
 import { getPost } from './graphql/queries'
 import { RouteComponentProps } from '@reach/router';
-import CreateEntry from './CreateEntry';
+import CreateEntry from './components/CreateEntry';
 
 interface ViewPostProps extends RouteComponentProps {
   pid?: string;
