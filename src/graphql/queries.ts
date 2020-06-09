@@ -8,7 +8,16 @@ export const getPost = /* GraphQL */ `
       id
       title
       description
+      expiredDate
+      winningEntryID
       entries {
+        items {
+          id
+          content
+          postID
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       createdAt
@@ -27,6 +36,11 @@ export const listPosts = /* GraphQL */ `
         id
         title
         description
+        expiredDate
+        winningEntryID
+        entries {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -44,6 +58,11 @@ export const getEntry = /* GraphQL */ `
         id
         title
         description
+        expiredDate
+        winningEntryID
+        entries {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -63,6 +82,15 @@ export const listEntrys = /* GraphQL */ `
         id
         content
         postID
+        post {
+          id
+          title
+          description
+          expiredDate
+          winningEntryID
+          createdAt
+          updatedAt
+        }
         createdAt
         updatedAt
       }

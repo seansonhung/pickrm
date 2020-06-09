@@ -1,7 +1,9 @@
-type Post @model {
+type Post @model{
   id: ID!
   title: String!
   description: String!
+  expiredDate: AWSDateTime!
+  winningEntryID: ID
   entries: [Entry] @connection(keyName: "byPost", fields: ["id"])
 }
 

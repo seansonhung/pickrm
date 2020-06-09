@@ -11,7 +11,16 @@ export const createPost = /* GraphQL */ `
       id
       title
       description
+      expiredDate
+      winningEntryID
       entries {
+        items {
+          id
+          content
+          postID
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       createdAt
@@ -28,7 +37,16 @@ export const updatePost = /* GraphQL */ `
       id
       title
       description
+      expiredDate
+      winningEntryID
       entries {
+        items {
+          id
+          content
+          postID
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       createdAt
@@ -45,7 +63,16 @@ export const deletePost = /* GraphQL */ `
       id
       title
       description
+      expiredDate
+      winningEntryID
       entries {
+        items {
+          id
+          content
+          postID
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       createdAt
@@ -66,6 +93,11 @@ export const createEntry = /* GraphQL */ `
         id
         title
         description
+        expiredDate
+        winningEntryID
+        entries {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -87,6 +119,11 @@ export const updateEntry = /* GraphQL */ `
         id
         title
         description
+        expiredDate
+        winningEntryID
+        entries {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -108,6 +145,11 @@ export const deleteEntry = /* GraphQL */ `
         id
         title
         description
+        expiredDate
+        winningEntryID
+        entries {
+          nextToken
+        }
         createdAt
         updatedAt
       }
