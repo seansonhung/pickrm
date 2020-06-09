@@ -1,6 +1,6 @@
 import React, { useState} from 'react';
 import { API, graphqlOperation } from 'aws-amplify'
-import { createEntry } from '../graphql/mutations'
+import { createEntry } from '../../graphql/mutations'
 
 type CreateEntryProps = {
   pid?: string;

@@ -74,7 +74,7 @@ const Header: React.FC = () => {
         </div>
         <Divider />
         <List>
-          <ListItem button component={Link} to="/app/create" key="create box" >
+          <ListItem button component={Link} to="app/create" key="create box" >
             <ListItemIcon> <LibraryAddIcon /> </ListItemIcon>
             <ListItemText primary="Create Pickrm Box"/>
           </ListItem>

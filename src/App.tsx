@@ -1,8 +1,8 @@
 import React from 'react';
 import { Router } from '@reach/router';
-import CreatePost from './CreatePost';
-import ViewPost from './ViewPost';
-import NotFoundPage from './404';
+import CreatePost from './Pages/CreatePost';
+import ViewPost from './Pages/ViewPost';
+import NotFoundPage from './Pages/404';
 import Layout from './layout/Layout'
 
 const App = () => {
@@ -16,5 +16,4 @@ const App = () => {
     </Layout>
   )
 }
-
 export default App;
