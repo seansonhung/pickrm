@@ -85,11 +85,11 @@ const Header: React.FC = () => {
         </List>
         <Divider />
         <List>
-          <ListItem button key="about">
+          <ListItem button component={Link} to="app/about" key="about">
             <ListItemIcon> <InfoIcon /> </ListItemIcon>
             <ListItemText primary="About Pickrm"/>
           </ListItem>
-          <ListItem button key="Contact/Suggestions">
+          <ListItem button component={Link} to="app/contact" key="Contact/Suggestions">
             <ListItemIcon> <MailIcon /> </ListItemIcon>
             <ListItemText primary="Contact/Suggestions"/>
           </ListItem>
