@@ -53,23 +53,27 @@ const Header: React.FC = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
+          <Typography variant="h5" noWrap>
             Pickrm
           </Typography>
         </Toolbar>
       </AppBar>
       <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="left"
-        open={open}
+        variant="permanent"
+        className={clsx(classes.drawer, {
+          [classes.drawerOpen]: open,
+          [classes.drawerClose]: !open,
+        })}
         classes={{
-          paper: classes.drawerPaper,
+          paper: clsx({
+            [classes.drawerOpen]: open,
+            [classes.drawerClose]: !open,
+          }),
         }}
       >
-        <div className={classes.drawerHeader}>
+        <div className={classes.toolbar}>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </div>
         <Divider />
@@ -100,28 +104,29 @@ const Header: React.FC = () => {
 };
 
 const drawerWidth = 240;
-
 const useStyles = makeStyles((theme) => ({
   root: {
+    overflowX: 'hidden',
     display: 'flex',
   },
   appBar: {
-    transition: theme.transitions.create(['margin', 'width'], {
+    marginBottom: theme.spacing(4),
+    zIndex: theme.zIndex.drawer + 1,
+    transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    marginBottom: theme.spacing(6)
   },
   appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginRight: 36,
   },
   hide: {
     display: 'none',
@@ -129,19 +134,34 @@ const useStyles = makeStyles((theme) => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
+    whiteSpace: 'nowrap',
   },
-  drawerPaper: {
+  drawerOpen: {
     width: drawerWidth,
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
   },
-  drawerHeader: {
+  drawerClose: {
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    overflowX: 'hidden',
+    width: theme.spacing(7) + 1,
+    [theme.breakpoints.up('sm')]: {
+      width: theme.spacing(9) + 1,
+    },
+  },
+  toolbar: {
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'flex-end',
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
   },
 }));
-
 
 export default Header;

@@ -1,7 +1,7 @@
 import React from "react";
 import Footer from "./Footer";
 import Header from "./Header";
-import { Container } from '@material-ui/core';
+import { Container, makeStyles, Theme } from '@material-ui/core';
 import "../style/global.css";
 
 type LayoutProps = {
@@ -9,16 +9,23 @@ type LayoutProps = {
 };
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-
+  const classes = useStyles();
+  
   return (
     <React.Fragment>
       <Header />
-      <Container component="div" maxWidth="lg">
-      <main>{children}</main>
-      <Footer />
+      <Container component="div" fixed className={classes.content}>
+        <main>{children}</main>
+        <Footer />
       </Container>
     </React.Fragment>
   );
 };
+
+const useStyles = makeStyles((theme: Theme) => ({
+  content: {
+    marginLeft: theme.spacing(10),
+  },
+}));
 
 export default Layout;
