@@ -8,7 +8,7 @@ interface ViewPostProps extends RouteComponentProps {
   pid?: string;
 }
 const ViewPost : React.FC<ViewPostProps> = ({ pid }) => {
-  const [post, setPost] = useState({title:'', description:''})
+  const [post, setPost] = useState({title:'', description:'', expiredDate:''})
   useEffect(() => {
     fetchPost()
   }, [])
@@ -31,6 +31,10 @@ const ViewPost : React.FC<ViewPostProps> = ({ pid }) => {
       <input
         type="text"
         placeholder={post.description}
+      />
+      <input
+        type="text"
+        placeholder={post.expiredDate}
       />
       <CreateEntry 
         pid={pid}
