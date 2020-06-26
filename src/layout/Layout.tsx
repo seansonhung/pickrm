@@ -24,7 +24,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
 const useStyles = makeStyles((theme: Theme) => ({
   content: {
-    marginLeft: theme.spacing(10),
+    paddingLeft: theme.spacing(12),
   },
 }));
 
