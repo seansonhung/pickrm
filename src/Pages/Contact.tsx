@@ -5,7 +5,7 @@ const Contact: React.FC<RouteComponentProps> = () => {
   return(
     <React.Fragment>
       <h1>Contact</h1>
-      <h4>You can send any comments and/or suggestions to pickrm@gmail.com</h4>
+      <h4>You can send any comments and/or suggestions to pickrmhelp@gmail.com</h4>
     </React.Fragment>
   )
   }
