@@ -3,6 +3,8 @@ import { API, graphqlOperation } from 'aws-amplify'
 import { getPost } from '../graphql/queries'
 import { RouteComponentProps } from '@reach/router';
 import CreateEntry from '../components/viewPost/CreateEntry';
+import PostDetails from '../components/viewPost/PostDetails';
+import { Grid, Paper } from '@material-ui/core';
 
 interface ViewPostProps extends RouteComponentProps {
   pid?: string;
@@ -24,21 +26,26 @@ const ViewPost : React.FC<ViewPostProps> = ({ pid }) => {
 
   return(
     <React.Fragment>
-      <input
-        type="text"
-        placeholder={post.title}
-      />
-      <input
-        type="text"
-        placeholder={post.description}
-      />
-      <input
-        type="text"
-        placeholder={post.expiredDate}
-      />
-      <CreateEntry 
-        pid={pid}
-      />
+      <Grid container spacing={4}>
+        {/* Post Details */}
+        <Grid item xs={12} md={7} lg={7}>
+          <Paper>
+            <PostDetails
+              postTitle={post.title}
+              postDescription={post.description}
+              postExpiredDate={new Date (post.expiredDate)}
+            />
+          </Paper>
+        </Grid>
+        {/* Post Entries Actions */}
+        <Grid item xs={12} md={5} lg={5}>
+          <Paper>
+            <CreateEntry 
+              pid={pid}
+            />
+          </Paper>
+        </Grid>
+      </Grid>
     </React.Fragment>
   )
 }
