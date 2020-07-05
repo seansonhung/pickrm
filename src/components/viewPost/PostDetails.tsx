@@ -1,5 +1,7 @@
 import React, { useState} from 'react';
 
+import CountDown from '../Countdown';
+
 type PostDetailsProps = {
   postTitle: string;
   postDescription: string;
@@ -7,25 +9,25 @@ type PostDetailsProps = {
 }
 const PostDetails : React.FC<PostDetailsProps> = ({ postTitle, postDescription, postExpiredDate }) => {
   let diff = (postExpiredDate.valueOf() - Date.now()) / 1000;
-  let days = 0;
-  let hours = 0;
-  let minutes = 0;
-  let seconds = 0;
-  if (diff > 0) {
-    if (diff >= 86400) { // 24 * 60 * 60
-      days = Math.floor(diff / 86400);
-      diff -= days * 86400;
-    }
-    if (diff >= 3600) { // 60 * 60
-      hours = Math.floor(diff / 3600);
-      diff -= hours * 3600;
-    }
-    if (diff >= 60) {
-      minutes = Math.floor(diff / 60);
-      diff -= minutes * 60;
-    }
-    seconds = Math.floor(diff);
-  }
+  // let days = 0;
+  // let hours = 0;
+  // let minutes = 0;
+  // let seconds = 0;
+  // if (diff > 0) {
+  //   if (diff >= 86400) { // 24 * 60 * 60
+  //     days = Math.floor(diff / 86400);
+  //     diff -= days * 86400;
+  //   }
+  //   if (diff >= 3600) { // 60 * 60
+  //     hours = Math.floor(diff / 3600);
+  //     diff -= hours * 3600;
+  //   }
+  //   if (diff >= 60) {
+  //     minutes = Math.floor(diff / 60);
+  //     diff -= minutes * 60;
+  //   }
+  //   seconds = Math.floor(diff);
+  // }
 
   return(
     <React.Fragment>
@@ -37,21 +39,8 @@ const PostDetails : React.FC<PostDetailsProps> = ({ postTitle, postDescription, 
         type="text"
         placeholder={postDescription}
       />
-      <input
-        type="days"
-        placeholder={days.toString()}
-      />
-      <input
-        type="hours"
-        placeholder={hours.toString()}
-      />
-      <input
-        type="minutes"
-        placeholder={minutes.toString()}
-      />
-      <input
-        type="seconds"
-        placeholder={seconds.toString()}
+      <CountDown
+        difference={diff}
       />
     </React.Fragment>
   )
