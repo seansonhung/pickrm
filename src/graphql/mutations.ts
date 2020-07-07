@@ -12,7 +12,7 @@ export const createPost = /* GraphQL */ `
       title
       description
       expiredDate
-      winningEntryID
+      winningEntrie
       entries {
         items {
           id
@@ -38,7 +38,7 @@ export const updatePost = /* GraphQL */ `
       title
       description
       expiredDate
-      winningEntryID
+      winningEntrie
       entries {
         items {
           id
@@ -64,7 +64,7 @@ export const deletePost = /* GraphQL */ `
       title
       description
       expiredDate
-      winningEntryID
+      winningEntrie
       entries {
         items {
           id
@@ -94,7 +94,7 @@ export const createEntry = /* GraphQL */ `
         title
         description
         expiredDate
-        winningEntryID
+        winningEntrie
         entries {
           nextToken
         }
@@ -120,7 +120,7 @@ export const updateEntry = /* GraphQL */ `
         title
         description
         expiredDate
-        winningEntryID
+        winningEntrie
         entries {
           nextToken
         }
@@ -146,7 +146,7 @@ export const deleteEntry = /* GraphQL */ `
         title
         description
         expiredDate
-        winningEntryID
+        winningEntrie
         entries {
           nextToken
         }

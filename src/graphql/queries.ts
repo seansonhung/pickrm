@@ -9,7 +9,7 @@ export const getPost = /* GraphQL */ `
       title
       description
       expiredDate
-      winningEntryID
+      winningEntrie
       entries {
         items {
           id
@@ -37,7 +37,7 @@ export const listPosts = /* GraphQL */ `
         title
         description
         expiredDate
-        winningEntryID
+        winningEntrie
         entries {
           nextToken
         }
@@ -59,7 +59,7 @@ export const getEntry = /* GraphQL */ `
         title
         description
         expiredDate
-        winningEntryID
+        winningEntrie
         entries {
           nextToken
         }
@@ -87,7 +87,7 @@ export const listEntrys = /* GraphQL */ `
           title
           description
           expiredDate
-          winningEntryID
+          winningEntrie
           createdAt
           updatedAt
         }

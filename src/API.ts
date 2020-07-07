@@ -7,14 +7,14 @@ export type CreatePostInput = {
   title: string,
   description: string,
   expiredDate: string,
-  winningEntryID?: string | null,
+  winningEntrie?: string | null,
 };
 
 export type ModelPostConditionInput = {
   title?: ModelStringInput | null,
   description?: ModelStringInput | null,
   expiredDate?: ModelStringInput | null,
-  winningEntryID?: ModelIDInput | null,
+  winningEntrie?: ModelStringInput | null,
   and?: Array< ModelPostConditionInput | null > | null,
   or?: Array< ModelPostConditionInput | null > | null,
   not?: ModelPostConditionInput | null,
@@ -60,28 +60,12 @@ export type ModelSizeInput = {
   between?: Array< number | null > | null,
 };
 
-export type ModelIDInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
-};
-
 export type UpdatePostInput = {
   id: string,
   title?: string | null,
   description?: string | null,
   expiredDate?: string | null,
-  winningEntryID?: string | null,
+  winningEntrie?: string | null,
 };
 
 export type DeletePostInput = {
@@ -102,6 +86,22 @@ export type ModelEntryConditionInput = {
   not?: ModelEntryConditionInput | null,
 };
 
+export type ModelIDInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+  size?: ModelSizeInput | null,
+};
+
 export type UpdateEntryInput = {
   id: string,
   content?: string | null,
@@ -117,7 +117,7 @@ export type ModelPostFilterInput = {
   title?: ModelStringInput | null,
   description?: ModelStringInput | null,
   expiredDate?: ModelStringInput | null,
-  winningEntryID?: ModelIDInput | null,
+  winningEntrie?: ModelStringInput | null,
   and?: Array< ModelPostFilterInput | null > | null,
   or?: Array< ModelPostFilterInput | null > | null,
   not?: ModelPostFilterInput | null,
@@ -144,7 +144,7 @@ export type CreatePostMutation = {
     title: string,
     description: string,
     expiredDate: string,
-    winningEntryID: string | null,
+    winningEntrie: string | null,
     entries:  {
       __typename: "ModelEntryConnection",
       items:  Array< {
@@ -174,7 +174,7 @@ export type UpdatePostMutation = {
     title: string,
     description: string,
     expiredDate: string,
-    winningEntryID: string | null,
+    winningEntrie: string | null,
     entries:  {
       __typename: "ModelEntryConnection",
       items:  Array< {
@@ -204,7 +204,7 @@ export type DeletePostMutation = {
     title: string,
     description: string,
     expiredDate: string,
-    winningEntryID: string | null,
+    winningEntrie: string | null,
     entries:  {
       __typename: "ModelEntryConnection",
       items:  Array< {
@@ -239,7 +239,7 @@ export type CreateEntryMutation = {
       title: string,
       description: string,
       expiredDate: string,
-      winningEntryID: string | null,
+      winningEntrie: string | null,
       entries:  {
         __typename: "ModelEntryConnection",
         nextToken: string | null,
@@ -269,7 +269,7 @@ export type UpdateEntryMutation = {
       title: string,
       description: string,
       expiredDate: string,
-      winningEntryID: string | null,
+      winningEntrie: string | null,
       entries:  {
         __typename: "ModelEntryConnection",
         nextToken: string | null,
@@ -299,7 +299,7 @@ export type DeleteEntryMutation = {
       title: string,
       description: string,
       expiredDate: string,
-      winningEntryID: string | null,
+      winningEntrie: string | null,
       entries:  {
         __typename: "ModelEntryConnection",
         nextToken: string | null,
@@ -323,7 +323,7 @@ export type GetPostQuery = {
     title: string,
     description: string,
     expiredDate: string,
-    winningEntryID: string | null,
+    winningEntrie: string | null,
     entries:  {
       __typename: "ModelEntryConnection",
       items:  Array< {
@@ -356,7 +356,7 @@ export type ListPostsQuery = {
       title: string,
       description: string,
       expiredDate: string,
-      winningEntryID: string | null,
+      winningEntrie: string | null,
       entries:  {
         __typename: "ModelEntryConnection",
         nextToken: string | null,
@@ -384,7 +384,7 @@ export type GetEntryQuery = {
       title: string,
       description: string,
       expiredDate: string,
-      winningEntryID: string | null,
+      winningEntrie: string | null,
       entries:  {
         __typename: "ModelEntryConnection",
         nextToken: string | null,
@@ -417,7 +417,7 @@ export type ListEntrysQuery = {
         title: string,
         description: string,
         expiredDate: string,
-        winningEntryID: string | null,
+        winningEntrie: string | null,
         createdAt: string,
         updatedAt: string,
       } | null,
@@ -435,7 +435,7 @@ export type OnCreatePostSubscription = {
     title: string,
     description: string,
     expiredDate: string,
-    winningEntryID: string | null,
+    winningEntrie: string | null,
     entries:  {
       __typename: "ModelEntryConnection",
       items:  Array< {
@@ -460,7 +460,7 @@ export type OnUpdatePostSubscription = {
     title: string,
     description: string,
     expiredDate: string,
-    winningEntryID: string | null,
+    winningEntrie: string | null,
     entries:  {
       __typename: "ModelEntryConnection",
       items:  Array< {
@@ -485,7 +485,7 @@ export type OnDeletePostSubscription = {
     title: string,
     description: string,
     expiredDate: string,
-    winningEntryID: string | null,
+    winningEntrie: string | null,
     entries:  {
       __typename: "ModelEntryConnection",
       items:  Array< {
@@ -515,7 +515,7 @@ export type OnCreateEntrySubscription = {
       title: string,
       description: string,
       expiredDate: string,
-      winningEntryID: string | null,
+      winningEntrie: string | null,
       entries:  {
         __typename: "ModelEntryConnection",
         nextToken: string | null,
@@ -540,7 +540,7 @@ export type OnUpdateEntrySubscription = {
       title: string,
       description: string,
       expiredDate: string,
-      winningEntryID: string | null,
+      winningEntrie: string | null,
       entries:  {
         __typename: "ModelEntryConnection",
         nextToken: string | null,
@@ -565,7 +565,7 @@ export type OnDeleteEntrySubscription = {
       title: string,
       description: string,
       expiredDate: string,
-      winningEntryID: string | null,
+      winningEntrie: string | null,
       entries:  {
         __typename: "ModelEntryConnection",
         nextToken: string | null,
