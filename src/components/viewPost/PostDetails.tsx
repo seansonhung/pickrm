@@ -6,28 +6,11 @@ type PostDetailsProps = {
   postTitle: string;
   postDescription: string;
   postExpiredDate: Date;
+  winningEntry: string;
 }
-const PostDetails : React.FC<PostDetailsProps> = ({ postTitle, postDescription, postExpiredDate }) => {
-  let diff = (postExpiredDate.valueOf() - Date.now()) / 1000;
-  // let days = 0;
-  // let hours = 0;
-  // let minutes = 0;
-  // let seconds = 0;
-  // if (diff > 0) {
-  //   if (diff >= 86400) { // 24 * 60 * 60
-  //     days = Math.floor(diff / 86400);
-  //     diff -= days * 86400;
-  //   }
-  //   if (diff >= 3600) { // 60 * 60
-  //     hours = Math.floor(diff / 3600);
-  //     diff -= hours * 3600;
-  //   }
-  //   if (diff >= 60) {
-  //     minutes = Math.floor(diff / 60);
-  //     diff -= minutes * 60;
-  //   }
-  //   seconds = Math.floor(diff);
-  // }
+const PostDetails : React.FC<PostDetailsProps> = ({ postTitle, postDescription, postExpiredDate, winningEntry }) => {
+  let as = (postExpiredDate.valueOf() - Date.now()) / 1000;
+  
 
   return(
     <React.Fragment>
@@ -39,9 +22,15 @@ const PostDetails : React.FC<PostDetailsProps> = ({ postTitle, postDescription, 
         type="text"
         placeholder={postDescription}
       />
-      <CountDown
-        difference={diff}
+      <input
+        type="text"
+        placeholder={winningEntry}
       />
+      {!isNaN(as)? 
+      <CountDown
+        seconds={as}
+      />
+      : ""}
     </React.Fragment>
   )
 }
