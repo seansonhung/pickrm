@@ -1,16 +1,13 @@
 import React, { useState} from 'react';
 
-import CountDown from '../Countdown';
+import CountDown from './Countdown';
 
 type PostDetailsProps = {
   postTitle: string;
   postDescription: string;
-  postExpiredDate: Date;
   winningEntry: string;
 }
-const PostDetails : React.FC<PostDetailsProps> = ({ postTitle, postDescription, postExpiredDate, winningEntry }) => {
-  let as = (postExpiredDate.valueOf() - Date.now()) / 1000;
-  
+const PostDetails : React.FC<PostDetailsProps> = ({ postTitle, postDescription, winningEntry}) => {
 
   return(
     <React.Fragment>
@@ -26,11 +23,6 @@ const PostDetails : React.FC<PostDetailsProps> = ({ postTitle, postDescription, 
         type="text"
         placeholder={winningEntry}
       />
-      {!isNaN(as)? 
-      <CountDown
-        seconds={as}
-      />
-      : ""}
     </React.Fragment>
   )
 }
