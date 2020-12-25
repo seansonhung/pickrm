@@ -4,6 +4,7 @@ import { createPost } from '../graphql/mutations';
 import TextField from '@material-ui/core/TextField';
 import { RouteComponentProps } from '@reach/router';
 import PostCreated from '../components/createPost/PostCreated';
+import { Grid, Paper } from '@material-ui/core';
 
 interface CreatePost extends RouteComponentProps {
 
@@ -15,6 +16,7 @@ const CreatePost: React.FC<CreatePost> = () => {
   const [postDays, setPostDays] = useState(0)
   const [postHours, setPostHours] = useState(1)
   const [postMinutes, setPostMinutes] = useState(0)
+  const [created, setCreated] = useState("")
 
   async function addPost() {
     const postDetails = {
@@ -30,8 +32,7 @@ const CreatePost: React.FC<CreatePost> = () => {
       setPostDays(0)
       setPostHours(1)
       setPostMinutes(0)
-      //load a module sucess created
-      console.log(newPost.data.createPost.id)
+      setCreated(newPost.data.createPost.id)
     } catch (err) {
       console.log('error creating post:', err)
     }
@@ -39,43 +40,52 @@ const CreatePost: React.FC<CreatePost> = () => {
 
   return(
     <React.Fragment>
-      <TextField
-        label="Title"
-        type="text"
-        value={postTitle}
-        placeholder={"post title"}
-        onChange={e => setPostTitle(e.target.value)}
-      />
-      <TextField
-        label="Description"
-        type="text"
-        value={postDescription}
-        placeholder={"post description"}
-        onChange={e => setPostDescription(e.target.value)}
-      />
-      <TextField
-        label="Days"
-        type="number"
-        value={postDays}
-        onChange={e => setPostDays(parseInt(e.target.value))}
-      />
-      <TextField
-        label="Hours"
-        type="number"
-        value={postHours}
-        onChange={e => setPostHours(parseInt(e.target.value))}
-      />
-      <TextField
-        label="Minutes"
-        type="number"
-        value={postMinutes}
-        onChange={e => setPostMinutes(parseInt(e.target.value))}
-      />
-      <button
-        onClick={addPost}
-      >
-        submit
-      </button>
+      <Grid container spacing={4}>
+        <TextField
+          label="Title"
+          type="text"
+          value={postTitle}
+          placeholder={"post title"}
+          onChange={e => setPostTitle(e.target.value)}
+        />
+        <TextField
+          label="Description"
+          type="text"
+          value={postDescription}
+          placeholder={"post description"}
+          onChange={e => setPostDescription(e.target.value)}
+        />
+        <TextField
+          label="Days"
+          type="number"
+          value={postDays}
+          onChange={e => setPostDays(parseInt(e.target.value))}
+        />
+        <TextField
+          label="Hours"
+          type="number"
+          value={postHours}
+          onChange={e => setPostHours(parseInt(e.target.value))}
+        />
+        <TextField
+          label="Minutes"
+          type="number"
+          value={postMinutes}
+          onChange={e => setPostMinutes(parseInt(e.target.value))}
+        />
+        <button
+          onClick={addPost}
+        >
+          submit
+        </button>
+      </Grid>
+
+      {created !== ""? 
+        <PostCreated
+          pid={created}
+        />
+        : ""
+      }
 
     </React.Fragment>
   )

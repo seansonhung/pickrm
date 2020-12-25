@@ -31,7 +31,7 @@ const ViewPost : React.FC<ViewPostProps> = ({ pid }) => {
       setPost(postData.data.getPost);
 
       setPostEntries(postEntries => [...postEntries, postData.data.getPost.entries.items]);
-      console.log(postData)
+      console.log("fetch post entries ", postData)
     } catch (err) { console.log('error fetching post') }
   }
 

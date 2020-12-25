@@ -6,8 +6,8 @@ type PostCreatedProps = {
 const PostCreated : React.FC<PostCreatedProps> = ({ pid }) => {
   return(
     <React.Fragment>
-      <h1>(´・w・`)</h1>
-      <h4>Created sucessfully</h4>
+      <h4>Post created sucessfully</h4>
+      <h4>http://localhost:3000/app/view/{pid}</h4>
     </React.Fragment>
   )
 }
