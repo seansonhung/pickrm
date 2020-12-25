@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Configuration after cloning
+### `aws-export.js`
+Make sure the file is up to date. Pull amplify project and make sure the API key are renewed.
+
 ## Available Scripts
 
 In the project directory, you can run:
