@@ -4,13 +4,12 @@ import { updatePost } from '../../graphql/mutations';
 
 type CountDownProps = {
   seconds: number;
-  winningEntry: string;
   pid?: string;
   entries: any;
+  refresh: () => void;
 }
-const CountDown : React.FC<CountDownProps> = ({ seconds, winningEntry, entries, pid }) => {
+const CountDown : React.FC<CountDownProps> = ({ seconds, entries, pid, refresh }) => {
   const [timer, setTimer] = useState(seconds);
-  const [chooseWinner, setChooseWinner] = useState(false);
 
   useEffect(() => {
     const num = setInterval(() => {
@@ -19,17 +18,19 @@ const CountDown : React.FC<CountDownProps> = ({ seconds, winningEntry, entries, 
     return () => {
       clearInterval(num);
     };
-  }, []);
+  }, [timer]);
 
   function updateCountdownEntryWinner() {
+    console.log(timer)
     if (timer > 0){
       setTimer(timer => timer - 1);
-    } else if (!winningEntry){ //check if ccountdown is up and no winner chosen
-      console.log("select winner");
-      setChooseWinner(true);
+    } else {
+      selectWinnerEntry()
     }
   }
-  function selectWinnerEntry() {
+
+  async function selectWinnerEntry() {
+    console.log("select winner")
       let winningEntry = "Post expired and noone participated.";
       console.log(entries[0].length);
       if (entries[0].length > 0){
@@ -41,17 +42,16 @@ const CountDown : React.FC<CountDownProps> = ({ seconds, winningEntry, entries, 
         id: pid
       };
       try {
-        API.graphql(graphqlOperation(updatePost, {input: updatePostContent}))
+        await API.graphql(graphqlOperation(updatePost, {input: updatePostContent}))
       } catch (err) {
         console.log('error choosing entry winner:', err)
       }
       console.log(winningEntry);
+      refresh()
     }
 
   return(
     <React.Fragment>
-      {timer<= 0 && !winningEntry && entries?  selectWinnerEntry() : null}
-      {chooseWinner? selectWinnerEntry() : null}
       <h1> Days:{Math.floor(timer / (60 * 60 * 24) >=0? timer / (60 * 60 * 24): 0)} &nbsp;
       Hours:{Math.floor((timer / ( 60 * 60)) % 24)>=0? Math.floor((timer / ( 60 * 60)) % 24) : 0} &nbsp;
       Minutes:{Math.floor((timer / 60) % 60)>=0? Math.floor((timer / 60) % 60) : 0} &nbsp;
