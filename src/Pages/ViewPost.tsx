@@ -15,12 +15,13 @@ const ViewPost : React.FC<ViewPostProps> = ({ pid }) => {
   const [post, setPost] = useState({title:'', description:'', expiredDate:'', winningEntrie:''})
   const [postEntries, setPostEntries] =  useState(Array());
   const [postExpired, setPostExpired] = useState(false);
+  const [render, setRender] = useState(false);
 
   let seconds = (new Date (post.expiredDate).valueOf() - Date.now()) / 1000;
 
   useEffect(() => {
     fetchPost()
-  }, [])
+  }, [render])
 
   async function fetchPost() {
     try {
@@ -28,11 +29,19 @@ const ViewPost : React.FC<ViewPostProps> = ({ pid }) => {
       if (postData.data.getPost.winningEntrie != null){
         setPostExpired(true);
       }
-      setPost(postData.data.getPost);
-
-      setPostEntries(postEntries => [...postEntries, postData.data.getPost.entries.items]);
-      console.log("fetch post entries ", postData)
+      await setPost(postData.data.getPost);
+      await setPostEntries(Array());
+      await setPostEntries(postEntries => [...postEntries, postData.data.getPost.entries.items]);
+      console.log("fetch post ", postData)
+      console.log("fetch entries", postEntries)
     } catch (err) { console.log('error fetching post') }
+  }
+
+  //re-render function, will be called to update update the data
+  //when a new entry is added or a winner has been chosen.
+  function refresh(){
+    console.log("refresh")
+    setRender(!render)
   }
 
   return(
@@ -46,11 +55,11 @@ const ViewPost : React.FC<ViewPostProps> = ({ pid }) => {
               postDescription={post.description}
               winningEntry = {post.winningEntrie}
             />
-            {!isNaN(seconds)? 
+            {!isNaN(seconds) && !postExpired? 
             <CountDown
+              refresh={refresh}
               pid={pid}
               seconds={seconds}
-              winningEntry={post.winningEntrie}
               entries = {postEntries}
             />
             : ""}
@@ -67,6 +76,7 @@ const ViewPost : React.FC<ViewPostProps> = ({ pid }) => {
           <Paper>
             <CreateEntry 
               pid={pid}
+              refresh={refresh}
             />
           </Paper>
         }
