@@ -4,8 +4,9 @@ import { createEntry } from '../../graphql/mutations'
 
 type CreateEntryProps = {
   pid?: string;
+  refresh: () => void;
 }
-const CreateEntry : React.FC<CreateEntryProps> = ({ pid }) => {
+const CreateEntry : React.FC<CreateEntryProps> = ({ pid, refresh }) => {
   const [entryContent, setEntryContent] = useState("")
 
   async function addEntry() {
@@ -17,9 +18,11 @@ const CreateEntry : React.FC<CreateEntryProps> = ({ pid }) => {
       if (entryContent === "") return
       await API.graphql(graphqlOperation(createEntry, {input: entryDetails}))
       setEntryContent("")
+      refresh()
     } catch (err) {
       console.log('error creating entry:', err)
     }
+    
   }
 
   return(
